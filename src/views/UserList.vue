@@ -53,9 +53,9 @@
         </el-col>
       </el-row>
   
-      <!--分页条-->
+      <!--分页条并且居中-->
       <el-row>
-        <el-col :span="8" :offset="16">
+        <el-col :span="8" :offset="8">
           <el-pagination background layout="prev, pager, next" :total="1000" />
         </el-col>
       </el-row>
