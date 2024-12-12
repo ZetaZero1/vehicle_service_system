@@ -30,11 +30,11 @@
               <el-icon><StarFilled /></el-icon>
               <span>商户管理</span>
             </template>
-            <el-menu-item index="3-1">
+            <el-menu-item index="/main/buymanage">
               <el-icon><UserFilled /></el-icon>
               <span>商户管理</span>
             </el-menu-item>
-            <el-menu-item index="3-2">
+            <el-menu-item index="/main/buyrank">
               <el-icon><UserFilled /></el-icon>
               <span>商户排名</span>
             </el-menu-item>
@@ -79,7 +79,7 @@
           </el-sub-menu>
 
 
-          <el-menu-item index="6">
+          <el-menu-item index="/main/securitylist">
               <el-icon><UserFilled /></el-icon>
               <span>救援任务</span>
           </el-menu-item>

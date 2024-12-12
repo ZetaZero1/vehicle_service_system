@@ -21,7 +21,23 @@ const routes =[
                 path:'/main/userlist' ,
                 name:'userlist',
                 component:()=>import('@/views/UserList.vue')
+            },
+            {
+                path:'/main/buymanage' ,
+                name:'buymanage',
+                component:()=>import('@/views/BuyManage.vue')
+            },
+            {
+                path:'/main/buyrank' ,
+                name:'buyrank',
+                component:()=>import('@/views/BuyRank.vue')
+            },
+            {
+                path:'/main/securitylist' ,
+                name:'securitylist',
+                component:()=>import('@/views/SecurityList.vue')
             }
+
         ]
     }
 ]
