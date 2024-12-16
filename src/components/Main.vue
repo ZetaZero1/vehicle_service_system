@@ -3,11 +3,11 @@
     <el-container>
       <el-aside width="200px">
         <el-menu
-            active-text-color="#ffd04b"
-            background-color="#304155"
-            default-active="2"
-            text-color="#fff"
-            router
+          active-text-color="#ffd04b"
+          background-color="#304155"
+          default-active="2"
+          text-color="#fff"
+          router
         >
           <el-menu-item index="1">
             <el-icon><Search /></el-icon>
@@ -78,12 +78,10 @@
             </el-menu-item>
           </el-sub-menu>
 
-
           <el-menu-item index="/main/securitylist">
-              <el-icon><UserFilled /></el-icon>
-              <span>救援任务</span>
+            <el-icon><UserFilled /></el-icon>
+            <span>救援任务</span>
           </el-menu-item>
-
 
           <el-sub-menu index="7">
             <template #title>
@@ -104,12 +102,10 @@
             </el-menu-item>
           </el-sub-menu>
 
-
           <el-menu-item index="/main/orderstats">
-              <el-icon><UserFilled /></el-icon>
-              <span>订单统计</span>
+            <el-icon><UserFilled /></el-icon>
+            <span>订单统计</span>
           </el-menu-item>
-
 
           <el-sub-menu index="9">
             <template #title>
@@ -145,14 +141,18 @@
             <el-col :span="12">
               <div class="divright">
                 <el-dropdown @command="commandHandler">
-                  <span>
-                    欢迎,admin
-                  </span>
+                  <span> 欢迎,{{ userName }} </span>
                   <template #dropdown>
                     <el-dropdown-menu>
-                      <el-dropdown-item command="center">个人中心</el-dropdown-item>
-                      <el-dropdown-item command="pwd">修改密码</el-dropdown-item>
-                      <el-dropdown-item command="logout">退出登录</el-dropdown-item>
+                      <el-dropdown-item command="center"
+                        >个人中心</el-dropdown-item
+                      >
+                      <el-dropdown-item command="pwd"
+                        >修改密码</el-dropdown-item
+                      >
+                      <el-dropdown-item command="logout"
+                        >退出登录</el-dropdown-item
+                      >
                     </el-dropdown-menu>
                   </template>
                 </el-dropdown>
@@ -170,42 +170,50 @@
 
 <script setup>
 import {
-Search,HomeFilled,Pointer,UserFilled,StarFilled
-} from '@element-plus/icons-vue'
+  Search,
+  HomeFilled,
+  Pointer,
+  UserFilled,
+  StarFilled,
+} from "@element-plus/icons-vue";
 
 //1.引入路由
-import { useRouter } from 'vue-router';
+import { useRouter } from "vue-router";
+
+// 获取用户名
+const userName = localStorage.getItem("userName");
 
 //2.获取路由器
-const router = useRouter()
+const router = useRouter();
 
 // 下拉菜单事件(退出登录)
-function commandHandler(val){
-  if(val == 'logout'){
+function commandHandler(val) {
+  if (val == "logout") {
     //退出登录 使用路由器跳转到登录页面
-      router.replace("/login")
+    // 删除本地存储
+    localStorage.removeItem('userName')
+    router.replace("/login");
   }
 }
-
 </script>
 
-<style  scoped>
-   .el-container{
-       height: 100vh;
-   }
-   .el-aside{
-     height: 100%;
-     background-color: #304155;
-   }
-   .el-header{
-     height: 60px;
-     line-height: 60px;
-     box-shadow: 3px 3px 3px grey;
-   }
-   .divright{
-     float: right;
-   }
-   .el-dropdown{
-     margin-top:23px;
-   }
+<style scoped>
+.el-container {
+  height: 100vh;
+}
+.el-aside {
+  height: 100%;
+  background-color: #304155;
+}
+.el-header {
+  height: 60px;
+  line-height: 60px;
+  box-shadow: 3px 3px 3px grey;
+}
+.divright {
+  float: right;
+}
+.el-dropdown {
+  margin-top: 23px;
+}
 </style>

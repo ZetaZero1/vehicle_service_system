@@ -7,11 +7,11 @@
       :rules="rules"
     >
       <h3>车服管理系统登录</h3>
-      <el-form-item label="用户名" prop="username">
-        <el-input v-model="loginFormData.username" />
+      <el-form-item label="用户名" prop="userName">
+        <el-input v-model="loginFormData.userName" />
       </el-form-item>
-      <el-form-item label="密码" prop="password">
-        <el-input type="password" v-model="loginFormData.password" />
+      <el-form-item label="密码" prop="userPwd">
+        <el-input type="password" v-model="loginFormData.userPwd" />
       </el-form-item>
 
       <el-form-item style="display: flex; justify-content: center">
@@ -24,13 +24,18 @@
 
 <script setup>
 //1.引入响应式函数
-import { ref } from "vue";
+import { ref, getCurrentInstance } from "vue";
 
 //1.2 引入路由器
 import { useRouter } from "vue-router";
 
 //引入消息提示组件
 import { ElMessage } from "element-plus";
+
+// 获取当前的组件实例对象
+const instance = getCurrentInstance();
+// 获取请求对象
+const { $http } = instance.appContext.config.globalProperties;
 
 //获取路由器对象
 const router = useRouter();
@@ -40,17 +45,17 @@ const loginForm = ref();
 
 //2.定义表单数据对象
 const loginFormData = ref({
-  username: "admins",
-  password: "123456",
+  userName: "",
+  userPwd: "",
 });
 
 //3.定义校验规则
 const rules = ref({
-  username: [
+  userName: [
     { required: true, message: "用户名不能为空", trigger: "blur" },
     { min: 6, max: 20, message: "用户名必须是6到20个字符", trigger: "blur" },
   ],
-  password: [
+  userPwd: [
     { required: true, message: "密码不能为空", trigger: "blur" },
     { min: 6, message: "密码最少6个字符", trigger: "blur" },
   ],
@@ -70,8 +75,22 @@ function submitLoginForm() {
       //校验通过：发送请求到后端服务器
       //todo
       //跳转主页
-      ElMessage.success("登录成功！");
-      router.replace("/main");
+      // ElMessage.success("登录成功！");
+      // router.replace("/main");
+      $http({
+        method: "post",
+        url: "http://localhost:8888/user/login",
+        params: loginFormData.value,
+      }).then((res) => {
+        if (res.data.code == 200) {
+          ElMessage.success("登录成功！");
+          // 把用户信息 存储都本地存储中
+          localStorage.setItem('userName',res.data.data.userName);
+          router.replace("/main");
+        }else{
+          ElMessage.error("用户名或密码错误,请重新输入!!")
+        }
+      });
     } else {
       //校验不通过
       ElMessage.error("你的用户名或者密码不符合规则，请重新输入！");
