@@ -1,9 +1,7 @@
 <template>
   <div>
     <el-row>
-      <el-col :span="24">
-        会员列表
-      </el-col>
+      <el-col :span="24"> 会员列表 </el-col>
     </el-row>
     <el-row>
       <el-col :span="24">
@@ -15,8 +13,14 @@
             <el-input placeholder="请输入手机号" clearable />
           </el-form-item>
           <el-form-item label="注册时间">
-            <el-date-picker v-model="value1" type="daterange" range-separator="至" start-placeholder="开始时间"
-              end-placeholder="结束时间" :size="size" />
+            <el-date-picker
+              v-model="value1"
+              type="daterange"
+              range-separator="至"
+              start-placeholder="开始时间"
+              end-placeholder="结束时间"
+              :size="size"
+            />
           </el-form-item>
           <el-form-item>
             <el-button type="primary">筛选</el-button>
@@ -55,29 +59,29 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue";
 const tableData = ref([
   {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
+    date: "2016-05-03",
+    name: "Tom",
+    address: "No. 189, Grove St, Los Angeles",
   },
   {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
+    date: "2016-05-02",
+    name: "Tom",
+    address: "No. 189, Grove St, Los Angeles",
   },
   {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
+    date: "2016-05-04",
+    name: "Tom",
+    address: "No. 189, Grove St, Los Angeles",
   },
   {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
+    date: "2016-05-01",
+    name: "Tom",
+    address: "No. 189, Grove St, Los Angeles",
   },
-])
+]);
 </script>
 
 <style scoped>

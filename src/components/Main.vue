@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <el-container>
       <el-aside width="200px">
         <el-menu
@@ -45,11 +45,11 @@
               <el-icon><StarFilled /></el-icon>
               <span>服务管理</span>
             </template>
-            <el-menu-item index="4-1">
+            <el-menu-item index="/main/servicemanage">
               <el-icon><UserFilled /></el-icon>
               <span>服务管理</span>
             </el-menu-item>
-            <el-menu-item index="4-2">
+            <el-menu-item index="/main/servicecategory">
               <el-icon><UserFilled /></el-icon>
               <span>服务类别</span>
             </el-menu-item>
@@ -60,19 +60,19 @@
               <el-icon><StarFilled /></el-icon>
               <span>订单管理</span>
             </template>
-            <el-menu-item index="5-1">
+            <el-menu-item index="/main/washorder">
               <el-icon><UserFilled /></el-icon>
               <span>洗车订单</span>
             </el-menu-item>
-            <el-menu-item index="5-2">
+            <el-menu-item index="/main/fixorder">
               <el-icon><UserFilled /></el-icon>
               <span>维修订单</span>
             </el-menu-item>
-            <el-menu-item index="5-3">
+            <el-menu-item index="/main/maintainorder">
               <el-icon><UserFilled /></el-icon>
               <span>保养订单</span>
             </el-menu-item>
-            <el-menu-item index="5-4">
+            <el-menu-item index="/main/remarkmanage">
               <el-icon><UserFilled /></el-icon>
               <span>评价管理</span>
             </el-menu-item>
@@ -90,22 +90,22 @@
               <el-icon><StarFilled /></el-icon>
               <span>信息发布</span>
             </template>
-            <el-menu-item index="7-1">
+            <el-menu-item index="/main/messagepush">
               <el-icon><UserFilled /></el-icon>
               <span>信息发布</span>
             </el-menu-item>
-            <el-menu-item index="7-2">
+            <el-menu-item index="/main/pendingreview">
               <el-icon><UserFilled /></el-icon>
               <span>待审核</span>
             </el-menu-item>
-            <el-menu-item index="7-3">
+            <el-menu-item index="/main/solvedmessage">
               <el-icon><UserFilled /></el-icon>
               <span>已审核</span>
             </el-menu-item>
           </el-sub-menu>
 
 
-          <el-menu-item index="8">
+          <el-menu-item index="/main/orderstats">
               <el-icon><UserFilled /></el-icon>
               <span>订单统计</span>
           </el-menu-item>
