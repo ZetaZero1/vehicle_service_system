@@ -77,7 +77,11 @@ import { ref, onMounted, getCurrentInstance, watchEffect } from "vue";
 // 获取当前实例对象
 const instance = getCurrentInstance();
 //获取网络请求对象
-const { $http } = instance.appContext.config.globalProperties;
+// const { $http } = instance.appContext.config.globalProperties;
+
+/* 改用axios请求 （更主流一点）*/
+import axios from 'axios';
+
 //定义请求参数对象 （包含表单数据（筛选条件））
 const queryParams = ref({
   pageNum: 1,
@@ -102,17 +106,19 @@ onMounted(() => {
 });
 // 获取用户列表的函数
 function userList() {
-  $http({
-    method: "get",
-    url: "http://localhost:8888/user/list",
-    params: queryParams.value,
-  }).then((res) => {
-    // console.log(res);
-    if (res.data.code == 200) {
-      tableData.value = res.data.data.records;
-      total.value = res.data.data.total;
-    }
-  });
+  axios
+    .get("http://localhost:8888/user/list", {
+      params: queryParams.value, // GET 参数
+    })
+    .then((res) => {
+      if (res.data.code === 200) {
+        tableData.value = res.data.data.records;
+        total.value = res.data.data.total;
+      }
+    })
+    .catch((error) => {
+      console.error("请求失败：", error);
+    });
 }
 // 分页查询
 function changePageNum(num) {
