@@ -45,8 +45,8 @@ const loginForm = ref();
 
 //2.定义表单数据对象
 const loginFormData = ref({
-  userName: "",
-  userPwd: "",
+  userName: "admins",
+  userPwd: "1234567",
 });
 
 //3.定义校验规则
@@ -85,10 +85,10 @@ function submitLoginForm() {
         if (res.data.code == 200) {
           ElMessage.success("登录成功！");
           // 把用户信息 存储都本地存储中
-          localStorage.setItem('userName',res.data.data.userName);
+          localStorage.setItem("userName", res.data.data.userName);
           router.replace("/main");
-        }else{
-          ElMessage.error("用户名或密码错误,请重新输入!!")
+        } else {
+          ElMessage.error("用户名或密码错误,请重新输入!!");
         }
       });
     } else {
