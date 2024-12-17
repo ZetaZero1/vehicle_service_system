@@ -9,7 +9,7 @@
           text-color="#fff"
           router
         >
-          <el-menu-item index="1">
+          <el-menu-item index="/main/front">
             <el-icon><Search /></el-icon>
             <span>首页</span>
           </el-menu-item>

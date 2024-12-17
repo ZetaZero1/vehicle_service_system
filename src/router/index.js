@@ -97,6 +97,11 @@ const routes =[
                 path:'/main/orderstats' ,
                 name:'orderstats',
                 component:()=>import('@/views/OrderStats.vue')
+            },
+            {
+                path:'/main/front' ,
+                name:'front',
+                component:()=>import('@/views/Front.vue')
             }
         ]
     }
