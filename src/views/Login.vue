@@ -32,6 +32,9 @@ import { useRouter } from "vue-router";
 //引入消息提示组件
 import { ElMessage } from "element-plus";
 
+/* 引入axios */
+import axios from "axios";
+
 // 获取当前的组件实例对象
 const instance = getCurrentInstance();
 // 获取请求对象
@@ -77,20 +80,19 @@ function submitLoginForm() {
       //跳转主页
       // ElMessage.success("登录成功！");
       // router.replace("/main");
-      $http({
-        method: "post",
-        url: "http://localhost:8888/user/login",
-        params: loginFormData.value,
-      }).then((res) => {
-        if (res.data.code == 200) {
-          ElMessage.success("登录成功！");
-          // 把用户信息 存储都本地存储中
-          localStorage.setItem("userName", res.data.data.userName);
-          router.replace("/main");
-        } else {
-          ElMessage.error("用户名或密码错误,请重新输入!!");
-        }
-      });
+      axios
+        .post("http://localhost:8888/user/login", loginFormData.value)
+        .then((res) => {
+          if (res.data.code === 200) {
+            ElMessage.success("登录成功！");
+            // 把用户信息存储到本地存储中
+            localStorage.setItem("userName", res.data.data.userName);
+            // 跳转到主页面
+            router.replace("/main/front");
+          } else {
+            ElMessage.error("用户名或密码错误，请重新输入!!");
+          }
+        });
     } else {
       //校验不通过
       ElMessage.error("你的用户名或者密码不符合规则，请重新输入！");

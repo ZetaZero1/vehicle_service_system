@@ -52,7 +52,7 @@
           <el-table-column prop="userId" label="用户ID" width="180" />
           <el-table-column prop="userName" label="用户名" width="180" />
           <el-table-column prop="phone" label="手机号" />
-          <el-table-column prop="createTime" label="注册时间" />
+          <el-table-column prop="createTime" label="注册时间" :formatter="(row) => formatDate(row.createTime)"/>
         </el-table>
       </el-col>
     </el-row>
@@ -134,6 +134,18 @@ watchEffect(() => {
   queryParams.value.startTime = time.value[0];
   queryParams.value.endTime = time.value[1];
 });
+
+/* 时间格式转换方法  */
+function formatDate(dateStr) {
+  if (!dateStr) return "无数据"; // 如果日期为空，显示默认值
+  const date = new Date(dateStr);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  return `${year}-${month}-${day} ${hours}:${minutes}`;
+}
 </script>
 
 <style scoped>
