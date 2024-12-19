@@ -63,7 +63,9 @@
           </el-table-column>
           <el-table-column label="操作">
             <template #default="scope">
-              <el-button type="primary">详情</el-button>
+              <el-button type="primary" @click="showBuyDetail(scope.row)"
+                >详情</el-button
+              >
               <el-button
                 v-if="scope.row.status === 0"
                 type="primary"
@@ -117,6 +119,12 @@
 import axios from "axios";
 import { ref, onMounted } from "vue";
 import { ElMessage } from "element-plus";
+import BuyDetail from "./BuyDetail.vue";
+/* 引入路由 */
+import { useRouter } from "vue-router";
+
+/* 获取路由器 要想进行页面跳转 要使用userRouter() */
+const router = useRouter();
 
 // 对话框显示状态
 let dialogVisible = ref(false);
@@ -205,7 +213,7 @@ function submitAudit() {
         buyList();
       }
       /* 隐藏模态框 */
-      dialogVisible.value=false;
+      dialogVisible.value = false;
     });
 }
 
@@ -237,6 +245,18 @@ function formatDate(dateStr) {
   const hours = String(date.getHours()).padStart(2, "0");
   const minutes = String(date.getMinutes()).padStart(2, "0");
   return `${year}-${month}-${day} ${hours}:${minutes}`;
+}
+
+/* 点击详情方法 */
+function showBuyDetail(val) {
+  // console.log(val)
+  /* 使用动态路由的方法 进行页面跳转
+    因为需要携带参数 */
+
+  router.replace({
+    path: "/main/buydetail",
+    query: val,
+  });
 }
 </script>
 
